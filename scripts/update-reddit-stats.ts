@@ -30,6 +30,11 @@ const POSTS: RedditPost[] = [
     urlMatch: '1sc3i30',
     label: 'r/n8n',
   },
+  {
+    jsonUrl: 'https://old.reddit.com/r/ClaudeAI/comments/1sd2f37/i_built_an_ai_job_search_system_with_claude_code/.json',
+    urlMatch: '1sd2f37',
+    label: 'r/ClaudeAI',
+  },
 ]
 
 async function fetchRedditStats(jsonUrl: string): Promise<{ ups: number; comments: number } | null> {

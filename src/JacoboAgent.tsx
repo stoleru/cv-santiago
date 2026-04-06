@@ -12,6 +12,7 @@ import {
   MetricsGrid,
   StatusBadge,
   CaseStudyCta,
+  GitHubRepoBadge,
   InlineWorkflowDownload,
   WorkflowGrid,
 } from './articles/components'
@@ -163,6 +164,8 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
       )}
 
       <MetricsGrid editorId="hero-metrics" items={t.heroMetrics} columns={5} compact />
+
+      <GitHubRepoBadge repo="santifer/jacobo-workflows" stars="75" forks="17" lang={lang} />
 
       {/* TL;DR */}
       <Callout editorId="tldr-callout" className="-mx-2 sm:mx-0">{t.tldr}</Callout>

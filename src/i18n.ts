@@ -489,19 +489,27 @@ export const translations = {
     redditPosts: [
       {
         hook: 'Automaticé mi búsqueda de empleo con agentes IA — 516 evaluaciones, 66 aplicaciones, zero screening manual.',
-        upvotes: '536',
-        comments: '306',
+        upvotes: '540',
+        comments: '341',
         subreddit: 'r/SideProject',
         cta: 'Leer en Reddit',
         url: 'https://www.reddit.com/r/SideProject/comments/1rw1lg4/i_automated_my_job_search_with_ai_agents_516/',
       },
       {
         hook: 'Construí un agente IA con WhatsApp + voz en n8n que gestiona el 90% de la atención al cliente. Vendí el negocio y el comprador lo mantuvo sin mí.',
-        upvotes: '102',
-        comments: '20',
+        upvotes: '224',
+        comments: '35',
         subreddit: 'r/n8n',
         cta: 'Leer en Reddit',
         url: 'https://www.reddit.com/r/n8n/comments/1sc3i30/i_built_a_whatsapp_voice_ai_agent_in_n8n_that/',
+      },
+      {
+        hook: 'Construí un sistema de búsqueda de empleo con Claude Code que puntuó 740+ ofertas y me consiguió trabajo. Acabo de hacerlo open source.',
+        upvotes: '2166',
+        comments: '160',
+        subreddit: 'r/ClaudeAI',
+        cta: 'Leer en Reddit',
+        url: 'https://www.reddit.com/r/ClaudeAI/comments/1sd2f37/i_built_an_ai_job_search_system_with_claude_code/',
       },
     ],
     speaking: {
@@ -1240,19 +1248,27 @@ export const translations = {
     redditPosts: [
       {
         hook: 'I automated my job search with AI agents — 516 evaluations, 66 applications, zero manual screening.',
-        upvotes: '536',
-        comments: '306',
+        upvotes: '540',
+        comments: '341',
         subreddit: 'r/SideProject',
         cta: 'Read on Reddit',
         url: 'https://www.reddit.com/r/SideProject/comments/1rw1lg4/i_automated_my_job_search_with_ai_agents_516/',
       },
       {
         hook: 'I built a WhatsApp + voice AI agent in n8n that handles 90% of customer service. Sold the business, the buyer kept it running without me.',
-        upvotes: '102',
-        comments: '20',
+        upvotes: '224',
+        comments: '35',
         subreddit: 'r/n8n',
         cta: 'Read on Reddit',
         url: 'https://www.reddit.com/r/n8n/comments/1sc3i30/i_built_a_whatsapp_voice_ai_agent_in_n8n_that/',
+      },
+      {
+        hook: 'I built an AI job search system with Claude Code that scored 740+ offers and landed me a job. Just open sourced it.',
+        upvotes: '2166',
+        comments: '160',
+        subreddit: 'r/ClaudeAI',
+        cta: 'Read on Reddit',
+        url: 'https://www.reddit.com/r/ClaudeAI/comments/1sd2f37/i_built_an_ai_job_search_system_with_claude_code/',
       },
     ],
     speaking: {

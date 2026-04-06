@@ -568,3 +568,40 @@ export function DownloadAllButton({ href, label, fileSize, editorId }: DownloadA
     </EditorLabel>
   )
 }
+
+// ---------------------------------------------------------------------------
+// GitHub Repo Badge — stars + forks + link
+// ---------------------------------------------------------------------------
+
+interface GitHubRepoBadgeProps {
+  repo: string
+  stars: string
+  forks: string
+  lang: 'es' | 'en'
+}
+
+export function GitHubRepoBadge({ repo, stars, forks, lang }: GitHubRepoBadgeProps) {
+  return (
+    <a
+      href={`https://github.com/${repo}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center gap-4 mb-6 py-3 px-5 rounded-xl bg-card border border-border/50 hover:border-primary/30 transition-colors group"
+    >
+      <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+        <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <span className="font-medium text-foreground">{stars}</span> stars
+      </span>
+      <span className="w-px h-4 bg-border/50" />
+      <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 5C7 3.89543 7.89543 3 9 3C10.1046 3 11 3.89543 11 5C11 5.74028 10.5978 6.38663 10 6.73244V14.0396H11.7915C12.8961 14.0396 13.7915 13.1441 13.7915 12.0396V10.7259C13.1823 10.3824 12.77 9.72292 12.77 8.96667C12.77 7.86667 13.6654 6.97333 14.77 6.97333C15.8746 6.97333 16.77 7.86667 16.77 8.96667C16.77 9.72292 16.3577 10.3824 15.7485 10.7259V12.0396C15.7485 14.2241 13.976 15.9966 11.7915 15.9966H10V17.2676C10.5978 17.6134 11 18.2597 11 19C11 20.1046 10.1046 21 9 21C7.89543 21 7 20.1046 7 19C7 18.2597 7.40221 17.6134 8 17.2676V6.73244C7.40221 6.38663 7 5.74028 7 5Z" /></svg>
+        <span className="font-medium text-foreground">{forks}</span> forks
+      </span>
+      <span className="w-px h-4 bg-border/50" />
+      <span className="text-sm text-primary group-hover:underline flex items-center gap-1">
+        {lang === 'es' ? 'Ver en GitHub' : 'View on GitHub'}
+        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+      </span>
+    </a>
+  )
+}
