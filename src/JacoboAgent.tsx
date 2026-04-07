@@ -165,7 +165,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
 
       <MetricsGrid editorId="hero-metrics" items={t.heroMetrics} columns={5} compact />
 
-      <GitHubRepoBadge repo="santifer/jacobo-workflows" stars="75" forks="17" lang={lang} />
+      <GitHubRepoBadge repo="santifer/jacobo-workflows" stars="96" forks="26" lang={lang} />
 
       {/* TL;DR */}
       <Callout editorId="tldr-callout" className="-mx-2 sm:mx-0">{t.tldr}</Callout>
