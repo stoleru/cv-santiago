@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { type CareerOpsLang as Lang } from './career-ops-i18n'
-import { buildArticleJsonLd } from './articles/json-ld'
+import { buildJsonLdFromRegistry } from './articles/json-ld'
 import { useArticleSeo } from './articles/use-article-seo'
 import {
   ArticleLayout,
@@ -54,34 +54,7 @@ const stackIcons: Record<string, React.ReactNode> = {
 // buildJsonLd
 // ---------------------------------------------------------------------------
 function buildJsonLd(lang: Lang) {
-  const t = careerOpsContent[lang]
-  return buildArticleJsonLd({
-    lang,
-    url: `https://santifer.io/${t.slug}`,
-    altUrl: `https://santifer.io/${t.altSlug}`,
-    headline: t.header.h1,
-    alternativeHeadline: t.seo.title,
-    description: t.seo.description,
-    datePublished: '2026-03-17',
-    dateModified: '2026-03-17',
-    keywords: [
-      'multi-agent job search', 'job search automation', 'Claude Code', 'ATS-optimized CV',
-      'ai resume builder', 'ai resume', 'ai powered job search', 'multi agent system',
-      'multi agent orchestration', 'automated job application', 'ai auto apply', 'career-ops',
-    ],
-    images: ['https://santifer.io/career-ops/og-career-ops.webp'],
-    breadcrumbHome: t.nav.breadcrumbHome,
-    breadcrumbCurrent: t.nav.breadcrumbCurrent,
-    faq: t.faq.items,
-    articleType: 'TechArticle',
-    about: [
-      { '@type': 'SoftwareApplication', name: 'Claude Code', url: 'https://claude.ai', applicationCategory: 'AI Agent' },
-      { '@type': 'SoftwareApplication', name: 'Playwright', url: 'https://playwright.dev', applicationCategory: 'Browser Automation' },
-      { '@type': 'Thing', name: 'Multi-Agent Orchestration' },
-      { '@type': 'Thing', name: 'Job Search Automation' },
-    ],
-    extra: { proficiencyLevel: 'Expert', dependencies: 'Claude Code, Playwright, Puppeteer, Node.js, tmux' },
-  })
+  return buildJsonLdFromRegistry('career-ops', lang, careerOpsContent[lang])
 }
 
 // ===========================================================================
@@ -134,7 +107,7 @@ export default function CareerOps({ lang = 'en' }: { lang?: Lang }) {
       <StatusBadge text={t.header.badge} />
       <MetricsGrid items={t.heroMetrics} columns={5} compact />
 
-      <GitHubRepoBadge repo="santifer/career-ops" stars="21.3K" forks="4.0K" lang={lang} />
+      <GitHubRepoBadge repo="santifer/career-ops" stars="23.4K" forks="4.4K" lang={lang} />
 
       <Callout className="bg-accent/10 border-accent/40">{t.tldr}</Callout>
       <Callout>{t.metaCallout}</Callout>

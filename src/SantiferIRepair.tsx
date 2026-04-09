@@ -11,17 +11,7 @@ export default function SantiferIRepair({ lang }: { lang: IRepairLang }) {
   const jsonLd = useMemo(() => ({
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'Person',
-        '@id': 'https://santifer.io/#person',
-        name: 'Santiago Fernández de Valderrama',
-        url: 'https://santifer.io',
-        jobTitle: 'Product Manager & AI Builder',
-        sameAs: [
-          'https://linkedin.com/in/santifer',
-          'https://github.com/santifer',
-        ],
-      },
+      { '@id': 'https://santifer.io/#person' },
       {
         '@type': 'WebSite',
         '@id': 'https://santifer.io/#website',

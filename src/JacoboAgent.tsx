@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react'
 import { type N8nLang as Lang } from './n8n-i18n'
-import { buildArticleJsonLd } from './articles/json-ld'
+import { buildJsonLdFromRegistry } from './articles/json-ld'
 import { useArticleSeo } from './articles/use-article-seo'
 import { Compass, Mic, CalendarDays, Receipt, Package, Calculator, HandHelping, Smartphone, MessageCircle, PhoneMissed, Download } from 'lucide-react'
 import {
@@ -99,37 +99,7 @@ const AGENT_ICONS: Record<string, React.ComponentType<{ className?: string }>> =
 // buildJsonLd
 // ---------------------------------------------------------------------------
 function buildJsonLd(lang: Lang) {
-  const t = jacoboContent[lang]
-  return buildArticleJsonLd({
-    lang,
-    url: `https://santifer.io/${t.slug}`,
-    altUrl: `https://santifer.io/${t.altSlug}`,
-    headline: t.header.h1,
-    alternativeHeadline: t.seo.title,
-    description: t.seo.description,
-    datePublished: '2026-02-25',
-    dateModified: '2026-03-07',
-    keywords: [
-      'multi-agent AI', 'multi agent orchestration', 'AI agent', 'sub-agent architecture', 'tool calling production',
-      'n8n workflows', 'n8n ai agent', 'ai agent case study', 'customer service AI',
-      'WhatsApp AI agent', 'ElevenLabs voice agent', 'voice AI', 'HITL', 'human in the loop',
-      'ia para pymes', 'agente ia whatsapp', 'multi-model orchestration', 'OpenRouter',
-      'FDE portfolio', 'solutions architect AI', 'AI production manager', 'enterprise AI patterns',
-      'voice AI platform', 'conversational AI case study', 'agentic workflows',
-    ],
-    images: ['https://santifer.io/jacobo/og-jacobo-agent.webp'],
-    breadcrumbHome: t.nav.breadcrumbHome,
-    breadcrumbCurrent: t.nav.breadcrumbCurrent,
-    faq: t.faq.items,
-    articleType: 'TechArticle',
-    about: [
-      { '@type': 'SoftwareApplication', name: 'n8n', url: 'https://n8n.io', applicationCategory: 'Workflow Automation' },
-      { '@type': 'SoftwareApplication', name: 'ElevenLabs', url: 'https://elevenlabs.io', applicationCategory: 'Voice AI' },
-      { '@type': 'Thing', name: 'Multi-Agent Orchestration' },
-      { '@type': 'Thing', name: 'AI Customer Service' },
-    ],
-    extra: { proficiencyLevel: 'Expert', dependencies: 'n8n, OpenRouter, ElevenLabs, WATI, Airtable, Aircall, YouCanBookMe' },
-  })
+  return buildJsonLdFromRegistry('jacobo', lang, jacoboContent[lang])
 }
 
 // ===========================================================================
@@ -165,7 +135,7 @@ export default function JacoboAgent({ lang = 'en' }: { lang?: Lang }) {
 
       <MetricsGrid editorId="hero-metrics" items={t.heroMetrics} columns={5} compact />
 
-      <GitHubRepoBadge repo="santifer/jacobo-workflows" stars="101" forks="28" lang={lang} />
+      <GitHubRepoBadge repo="santifer/jacobo-workflows" stars="105" forks="29" lang={lang} />
 
       {/* TL;DR */}
       <Callout editorId="tldr-callout" className="-mx-2 sm:mx-0">{t.tldr}</Callout>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import type { ReactNode } from 'react'
 import { type N8nLang as Lang } from './n8n-i18n'
-import { buildArticleJsonLd } from './articles/json-ld'
+import { buildJsonLdFromRegistry } from './articles/json-ld'
 import { useArticleSeo } from './articles/use-article-seo'
 import {
   Database, Wrench, BarChart3, Zap,
@@ -237,28 +237,7 @@ function ReviewCarousel({ alt }: { alt: string }) {
 }
 
 function buildJsonLd(lang: Lang) {
-  const t = pseoContent[lang]
-  return buildArticleJsonLd({
-    lang,
-    url: `https://santifer.io/${t.slug}`,
-    altUrl: `https://santifer.io/${t.altSlug}`,
-    headline: t.seo.title,
-    alternativeHeadline: t.seo.title,
-    description: t.seo.description,
-    datePublished: '2026-02-25',
-    dateModified: '2026-03-09',
-    keywords: ['programmatic SEO', 'Airtable', 'headless CMS', 'Astro', 'DataForSEO', 'crawl budget', 'phone repair', 'static site generation', 'local SEO', 'ERP'],
-    images: ['https://santifer.io/pseo/og-programmatic-seo.png'],
-    breadcrumbHome: t.nav.breadcrumbHome,
-    breadcrumbCurrent: t.nav.breadcrumbCurrent,
-    faq: t.faq.items,
-    articleType: 'TechArticle',
-    about: [
-      { '@type': 'SoftwareApplication', name: 'Airtable', url: 'https://airtable.com', applicationCategory: 'Database Platform' },
-      { '@type': 'SoftwareApplication', name: 'Astro', url: 'https://astro.build', applicationCategory: 'Static Site Generator' },
-      { '@type': 'SoftwareApplication', name: 'DataForSEO', url: 'https://dataforseo.com', applicationCategory: 'SEO Data API' },
-    ],
-  })
+  return buildJsonLdFromRegistry('programmatic-seo', lang, pseoContent[lang])
 }
 
 export default function ProgrammaticSeo({ lang = 'en' }: { lang?: Lang }) {

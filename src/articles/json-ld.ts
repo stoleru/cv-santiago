@@ -1,3 +1,5 @@
+import { articleRegistry } from './registry'
+
 type Lang = 'es' | 'en'
 
 interface JsonLdOptions {
@@ -28,7 +30,7 @@ interface JsonLdOptions {
   /** isBasedOn — source material (course, workshop, research) */
   isBasedOn?: Record<string, unknown>
   /** mentions — tools and platforms referenced */
-  mentions?: Array<Record<string, string>>
+  mentions?: Array<Record<string, string | string[]>>
   /** discussionUrl — link to Reddit/HN thread */
   discussionUrl?: string
   /** relatedLink — link to cross-posted article (Dev.to, etc.) */
@@ -40,7 +42,7 @@ const PERSON = {
   '@id': 'https://santifer.io/#person',
   name: 'Santiago Fernández de Valderrama Aparicio',
   url: 'https://santifer.io',
-  jobTitle: 'AI Product Manager',
+  jobTitle: 'Head of Applied AI',
   sameAs: [
     'https://www.linkedin.com/in/santifer',
     'https://github.com/santifer',
@@ -49,7 +51,12 @@ const PERSON = {
     'https://santifer.substack.com',
     'https://contentdigest.santifer.io',
     'https://www.youtube.com/@santifer_io',
+    'https://stackoverflow.com/users/32541743',
+    'https://orcid.org/0009-0006-2192-7210',
+    'https://www.crunchbase.com/person/santiago-fernandez-de-valderrama',
+    'https://huggingface.co/santifer',
     'https://www.wikidata.org/wiki/Q138710224',
+    'https://santiferirepair.es',
     'https://www.facebook.com/santifer.io/',
     'https://www.producthunt.com/@santifer',
     'https://app.daily.dev/santifer',
@@ -126,4 +133,52 @@ export function buildArticleJsonLd(opts: JsonLdOptions) {
     '@context': 'https://schema.org',
     '@graph': graph,
   }
+}
+
+/**
+ * Build JSON-LD for an article using registry as single source of truth.
+ * Components call this instead of buildArticleJsonLd directly, ensuring
+ * client-side schema matches prerendered schema (fixes hydration divergence).
+ */
+export function buildJsonLdFromRegistry(
+  articleId: string,
+  lang: Lang,
+  i18n: {
+    header: { h1: string }
+    seo: { title: string; description: string }
+    slug: string
+    altSlug: string
+    nav: { breadcrumbHome: string; breadcrumbCurrent: string }
+    faq: { items: readonly { q: string; a: string }[] }
+  },
+  overrides?: Partial<JsonLdOptions>,
+) {
+  const config = articleRegistry.find(a => a.id === articleId)
+  if (!config?.seoMeta) throw new Error(`Article "${articleId}" not found in registry or missing seoMeta`)
+
+  const meta = config.seoMeta
+  return buildArticleJsonLd({
+    lang,
+    url: `https://santifer.io/${i18n.slug}`,
+    altUrl: `https://santifer.io/${i18n.altSlug}`,
+    headline: i18n.header.h1,
+    alternativeHeadline: i18n.seo.title,
+    description: i18n.seo.description,
+    datePublished: meta.datePublished,
+    dateModified: meta.dateModified,
+    keywords: meta.keywords,
+    images: config.heroImage ? [config.heroImage] : meta.images,
+    breadcrumbHome: i18n.nav.breadcrumbHome,
+    breadcrumbCurrent: i18n.nav.breadcrumbCurrent,
+    faq: i18n.faq.items,
+    articleType: meta.articleType,
+    about: meta.about,
+    extra: meta.extra,
+    citation: meta.citation,
+    isBasedOn: meta.isBasedOn,
+    mentions: meta.mentions,
+    discussionUrl: meta.discussionUrl,
+    relatedLink: meta.relatedLink,
+    ...overrides,
+  })
 }

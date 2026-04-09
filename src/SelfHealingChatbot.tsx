@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { type N8nLang as Lang } from './n8n-i18n'
-import { buildArticleJsonLd } from './articles/json-ld'
+import { buildJsonLdFromRegistry } from './articles/json-ld'
 import { useArticleSeo } from './articles/use-article-seo'
 import {
   ArticleLayout,
@@ -92,36 +92,7 @@ const stackIcons: Record<string, React.ReactNode> = {
 // buildJsonLd
 // ---------------------------------------------------------------------------
 function buildJsonLd(lang: Lang) {
-  const t = chatbotContent[lang]
-  return buildArticleJsonLd({
-    lang,
-    url: `https://santifer.io/${t.slug}`,
-    altUrl: `https://santifer.io/${t.altSlug}`,
-    headline: t.header.h1,
-    alternativeHeadline: t.seo.title,
-    description: t.seo.description,
-    datePublished: '2026-03-11',
-    dateModified: '2026-03-14',
-    keywords: [
-      'LLMOps', 'self-healing chatbot', 'agentic RAG', 'jailbreak defense', 'prompt injection',
-      'LLM evaluation', 'closed loop LLM', 'Langfuse', 'prompt versioning', 'adversarial testing',
-      'trace-to-eval', 'hybrid search pgvector', 'AI portfolio', 'chatbot evals', 'CI gate LLM',
-      'voice mode chatbot', 'OpenAI Realtime API', 'speech-to-speech AI',
-      'agentic observability', 'developer feedback loop', 'AI maintaining AI',
-    ],
-    images: ['https://santifer.io/chatbot/og-self-healing-chatbot.webp'],
-    breadcrumbHome: t.nav.breadcrumbHome,
-    breadcrumbCurrent: t.nav.breadcrumbCurrent,
-    faq: t.faq.items,
-    articleType: 'TechArticle',
-    about: [
-      { '@type': 'SoftwareApplication', name: 'Langfuse', url: 'https://langfuse.com', applicationCategory: 'LLM Observability' },
-      { '@type': 'SoftwareApplication', name: 'Supabase', url: 'https://supabase.com', applicationCategory: 'Database' },
-      { '@type': 'Thing', name: 'LLMOps' },
-      { '@type': 'Thing', name: 'Retrieval-Augmented Generation' },
-    ],
-    extra: { proficiencyLevel: 'Expert', dependencies: 'Claude, Langfuse, Supabase, Vercel, OpenAI, Resend, GitHub Actions' },
-  })
+  return buildJsonLdFromRegistry('self-healing-chatbot', lang, chatbotContent[lang])
 }
 
 // ===========================================================================

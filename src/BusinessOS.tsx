@@ -3,7 +3,7 @@ import {
   ClipboardList, Contact, Calculator, Cpu, ShoppingBag, Code, MessageSquareHeart, Star, Search, MapPin, Film, Bot,
 } from 'lucide-react'
 import { type N8nLang as Lang } from './n8n-i18n'
-import { buildArticleJsonLd } from './articles/json-ld'
+import { buildJsonLdFromRegistry } from './articles/json-ld'
 import { useArticleSeo } from './articles/use-article-seo'
 
 /* ------------------------------------------------------------------ */
@@ -66,30 +66,7 @@ import { businessOsContent } from './business-os-i18n'
 import ArchitectureDiagram from './ArchitectureDiagram'
 
 function buildJsonLd(lang: Lang) {
-  const t = businessOsContent[lang]
-  return buildArticleJsonLd({
-    lang,
-    url: `https://santifer.io/${t.slug}`,
-    altUrl: `https://santifer.io/${t.altSlug}`,
-    headline: t.header.h1,
-    alternativeHeadline: t.seo.title,
-    description: t.seo.description,
-    datePublished: '2026-02-25',
-    dateModified: '2026-03-06',
-    keywords: ['Business OS', 'Airtable ERP', 'Airtable as ERP', 'no-code ERP', 'Airtable automation', 'CRM gamification', 'phone repair', 'inventory management', 'custom ERP case study', 'repair shop management', 'programmatic SEO', 'Airtable CRM', 'single source of truth', 'business operating system', 'multi-base architecture'],
-    images: ['https://santifer.io/business-os/og-business-os.webp'],
-    breadcrumbHome: t.nav.breadcrumbHome,
-    breadcrumbCurrent: t.nav.breadcrumbCurrent,
-    faq: t.faq.items,
-    articleType: 'TechArticle',
-    about: [
-      { '@type': 'SoftwareApplication', name: 'Airtable', url: 'https://airtable.com', applicationCategory: 'Database Platform' },
-      { '@type': 'SoftwareApplication', name: 'n8n', url: 'https://n8n.io', applicationCategory: 'Workflow Automation' },
-      { '@type': 'Thing', name: 'Enterprise Resource Planning' },
-      { '@type': 'Thing', name: 'Business Process Automation' },
-    ],
-    extra: { proficiencyLevel: 'Advanced', dependencies: 'Airtable Pro, n8n, YouCanBookMe, WATI (WhatsApp API), DataForSEO' },
-  })
+  return buildJsonLdFromRegistry('business-os', lang, businessOsContent[lang])
 }
 
 export default function BusinessOS({ lang = 'en' }: { lang?: Lang }) {

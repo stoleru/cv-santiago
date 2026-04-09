@@ -51,7 +51,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
     script.textContent = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'ProfilePage',
-      dateModified: '2026-03-27',
+      dateModified: '2026-04-08',
       mainEntity: {
         '@type': 'Person',
         '@id': 'https://santifer.io/#person',
@@ -60,7 +60,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
         url: 'https://santifer.io',
         image: 'https://santifer.io/foto-avatar.png',
         email: 'hola@santifer.io',
-        jobTitle: ['AI Product Manager', 'Solutions Architect (No/Low-Code & AI)', 'AI Forward Deployed Engineer'],
+        jobTitle: ['Head of Applied AI', 'AI Product Manager', 'Solutions Architect (No/Low-Code & AI)', 'AI Forward Deployed Engineer'],
         knowsAbout: [
           { '@type': 'Thing', name: 'Artificial Intelligence', url: 'https://en.wikipedia.org/wiki/Artificial_intelligence' },
           { '@type': 'Thing', name: 'Machine Learning', url: 'https://en.wikipedia.org/wiki/Machine_learning' },

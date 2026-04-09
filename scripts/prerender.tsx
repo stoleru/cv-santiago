@@ -25,6 +25,7 @@ import { articleRegistry, type ArticleConfig } from '../src/articles/registry.ts
 import { buildArticleJsonLd } from '../src/articles/json-ld.ts';
 import AboutPage from '../src/AboutPage.tsx';
 import { aboutContent } from '../src/about-i18n.ts';
+import PrivacyPolicy from '../src/PrivacyPolicy.tsx';
 import { seo } from '../src/i18n.ts';
 import { n8nContent } from '../src/n8n-i18n.ts';
 import { jacoboContent } from '../src/jacobo-i18n.ts';
@@ -158,7 +159,7 @@ let enPage = indexHtml
 const aboutJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-  dateModified: '2026-03-27',
+  dateModified: '2026-04-08',
   mainEntity: {
     '@type': 'Person',
     '@id': 'https://santifer.io/#person',
@@ -167,7 +168,7 @@ const aboutJsonLd = {
     url: 'https://santifer.io',
     image: 'https://santifer.io/foto-avatar.png',
     email: 'hola@santifer.io',
-    jobTitle: ['AI Product Manager', 'Solutions Architect (No/Low-Code & AI)', 'AI Forward Deployed Engineer'],
+    jobTitle: ['Head of Applied AI', 'AI Product Manager', 'Solutions Architect (No/Low-Code & AI)', 'AI Forward Deployed Engineer'],
     knowsAbout: [
       { '@type': 'Thing', name: 'Artificial Intelligence', url: 'https://en.wikipedia.org/wiki/Artificial_intelligence' },
       { '@type': 'Thing', name: 'Machine Learning', url: 'https://en.wikipedia.org/wiki/Machine_learning' },
@@ -458,6 +459,60 @@ async function writePage(html: string, outputPath: string, label: string) {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Privacy pages — /privacidad (ES) + /privacy (EN)
+// ---------------------------------------------------------------------------
+const privacyPages: { slug: string; html: string }[] = [];
+
+for (const [lang, slug, altSlug] of [['es', 'privacidad', 'privacy'], ['en', 'privacy', 'privacidad']] as const) {
+  const url = `https://santifer.io/${slug}`;
+  const altUrl = `https://santifer.io/${altSlug}`;
+  const altLang = lang === 'es' ? 'en' : 'es';
+  const title = lang === 'es' ? 'Política de Privacidad | santifer.io' : 'Privacy Policy | santifer.io';
+  const description = lang === 'es'
+    ? 'Política de privacidad de santifer.io. Cómo se recopilan y utilizan los datos del chatbot y la web.'
+    : 'Privacy policy for santifer.io. How chatbot and website data is collected and used.';
+
+  let renderedHtml: string;
+  try {
+    renderedHtml = stripReactSSRTags(renderToString(
+      <StaticRouter location={`/${slug}`}>
+        <GlobalNav />
+        <div>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path={`/${slug}`} element={<PrivacyPolicy lang={lang} />} />
+            </Routes>
+          </Suspense>
+        </div>
+      </StaticRouter>
+    ));
+  } catch (err) {
+    console.error(`[prerender] SSR failed for ${slug}:`, err);
+    renderedHtml = '';
+  }
+
+  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://santifer.io/privacidad" />`;
+
+  let result = indexHtml
+    .replace('<div id="root"></div>', `<div id="root">${renderedHtml}</div>`)
+    .replace('<html lang="es" class="dark">', `<html lang="${lang}" class="dark">`)
+    .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`)
+    .replace(/<meta name="title" content="[^"]*" \/>/, `<meta name="title" content="${esc(title)}" />`)
+    .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${esc(description)}" />`)
+    .replace(/<meta name="robots" content="[^"]*" \/>/, '<meta name="robots" content="noindex, nofollow" />')
+    .replace(/<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>\s*/g, '')
+    .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${url}" />${hreflangLinks}`)
+    .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`)
+    .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${esc(title)}" />`)
+    .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${esc(description)}" />`);
+
+  // Remove homepage JSON-LD (privacy pages don't need structured data)
+  result = result.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, '');
+
+  privacyPages.push({ slug, html: result });
+}
+
 async function inlineCriticalCSS() {
   // Home pages
   await writePage(injectedEs, indexPath, 'ES: dist/index.html updated');
@@ -470,6 +525,11 @@ async function inlineCriticalCSS() {
 
   // Article pages
   for (const { slug, html } of articlePages) {
+    await writePage(html, resolve(distDir, slug, 'index.html'), `${slug}: dist/${slug}/index.html created`);
+  }
+
+  // Privacy pages
+  for (const { slug, html } of privacyPages) {
     await writePage(html, resolve(distDir, slug, 'index.html'), `${slug}: dist/${slug}/index.html created`);
   }
 }
@@ -525,6 +585,11 @@ for (const { slug, html } of aboutPages) {
 
 // Validate article pages
 for (const { slug, html } of articlePages) {
+  validateHydrationStructure(html, slug);
+}
+
+// Validate privacy pages
+for (const { slug, html } of privacyPages) {
   validateHydrationStructure(html, slug);
 }
 

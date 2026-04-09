@@ -1526,9 +1526,9 @@ function App() {
                   <Github className="w-3.5 h-3.5" />
                   <span>career-ops</span>
                   <Star className="w-3 h-3 text-yellow-500" />
-                  {/* hero-stats:career-ops:stars */}<span className="font-medium">21.4K</span>
+                  {/* hero-stats:career-ops:stars */}<span className="font-medium">23.4K</span>
                   <GitFork className="w-3 h-3" />
-                  {/* hero-stats:career-ops:forks */}<span>4.0K</span>
+                  {/* hero-stats:career-ops:forks */}<span>4.4K</span>
                 </Link>
               </div>
 
@@ -2432,7 +2432,202 @@ function App() {
             </h2>
           </AnimatedSection>
 
-          {/* Teaching / Speaking cards */}
+          {/* X Post — Garry Tan hero card */}
+          {t.xPost && (
+            <AnimatedSection delay={0.1}>
+              <div className="mb-8">
+                <div
+                  className="flex flex-col p-5 rounded-2xl bg-card border border-border/50 hover:border-border transition-colors relative cursor-pointer"
+                  onClick={(e) => { if ((e.target as HTMLElement).closest('.garry-card')) return; window.open(t.xPost.url, '_blank') }}
+                >
+                  {/* Santiago — two column layout like Garry Tan */}
+                  <div className="flex gap-4 mb-8">
+                    <img src="/foto-avatar.webp" alt="santifer" role="presentation" width={384} height={384} className="w-16 h-16 md:w-20 md:h-20 rounded-full shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5 flex-wrap mb-1">
+                        <span className="text-base md:text-lg font-bold text-foreground">santifer | AI Builder</span>
+                        <svg viewBox="0 0 22 22" className="w-5 h-5 text-[#1d9bf0] shrink-0" fill="currentColor"><path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.855-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.69-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.636.433 1.221.878 1.69.47.446 1.055.752 1.69.883.635.13 1.294.083 1.902-.143.271.586.702 1.084 1.24 1.438.54.354 1.167.551 1.813.568.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.225 1.261.272 1.893.143.636-.131 1.221-.437 1.69-.883.445-.47.751-1.054.882-1.69.132-.633.083-1.29-.14-1.898.587-.273 1.084-.704 1.438-1.244.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/></svg>
+                        <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 ml-auto" fill="currentColor" opacity={0.4}>
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3">@santifer</p>
+                      <p className="text-base md:text-lg text-foreground leading-relaxed">{t.xPost.hook}</p>
+                      <p className="text-base md:text-lg text-foreground mt-1">{t.xPost.hookLinkPrefix}<span className="text-[#1d9bf0]">{t.xPost.hookLinkUrl}</span></p>
+                    </div>
+                  </div>
+
+                  {/* Garry Tan quote — hero sized with gradient border */}
+                  <a href={t.xPost.quoteUrl} target="_blank" rel="noopener noreferrer" className="garry-card block rounded-2xl p-[2px] bg-gradient-theme w-full max-w-3xl mx-auto hover:brightness-110 transition-all group/garry" onClick={(e) => e.stopPropagation()}>
+                    <div className="rounded-[calc(1rem-2px)] bg-card text-left overflow-hidden">
+                      <div className="flex gap-4 p-5 pb-4">
+                        <img src="/garry-tan.jpg" alt="Garry Tan" className="w-16 h-16 md:w-20 md:h-20 rounded-full shrink-0" width={80} height={80} loading="lazy" />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5 flex-wrap mb-1">
+                            <span className="text-base md:text-lg font-bold text-foreground">{t.xPost.quoteAuthor}</span>
+                            <svg viewBox="0 0 22 22" className="w-5 h-5 text-[#1d9bf0] shrink-0" fill="currentColor"><path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.855-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.69-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.636.433 1.221.878 1.69.47.446 1.055.752 1.69.883.635.13 1.294.083 1.902-.143.271.586.702 1.084 1.24 1.438.54.354 1.167.551 1.813.568.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.225 1.261.272 1.893.143.636-.131 1.221-.437 1.69-.883.445-.47.751-1.054.882-1.69.132-.633.083-1.29-.14-1.898.587-.273 1.084-.704 1.438-1.244.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/></svg>
+                            <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0" fill="#FF6600"><rect x="4" y="4" width="16" height="16" rx="2"/><text x="12" y="17" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold" fontFamily="sans-serif">Y</text></svg>
+                            <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 ml-auto" fill="currentColor" opacity={0.4}>
+                              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                          </div>
+                          <p className="text-sm text-muted-foreground mb-2">{t.xPost.quoteHandle} · {t.xPost.quoteRole}</p>
+                          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">"{t.xPost.quoteText}"</p>
+                        </div>
+                      </div>
+                      {/* Career-Ops demo video — edge to edge, no padding */}
+                      {hydrated && (
+                        <div className="relative w-full" style={{ paddingBottom: '62.5%' }}>
+                          <iframe
+                            src="https://player.mux.com/Zhl5qjj02PoD2g01ZsOwJptHNTvThw7udv47tnza1VLUc?accent-color=%2300D9FF&loop=true&muted=true&autoplay=true"
+                            className="absolute inset-0 w-full h-full"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      {/* Garry Tan tweet metrics */}
+                      <div className="px-5 py-3 border-t border-border/30 flex items-center gap-6 text-sm text-muted-foreground">
+                        <span className="flex items-center gap-1.5">
+                          <MessageCircle className="w-4 h-4" />
+                          {t.xPost.quoteReplies}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <Share2 className="w-4 h-4" />
+                          {t.xPost.quoteRetweets}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <ThumbsUp className="w-4 h-4" />
+                          {t.xPost.quoteLikes}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <TrendingUp className="w-4 h-4" />
+                          {t.xPost.quoteViews}
+                        </span>
+                        <span className="ml-auto text-foreground hover:underline flex items-center gap-1.5 transition-colors">
+                          {t.xPost.cta}
+                          <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+
+                  {/* Santiago tweet metrics */}
+                  <a href={t.xPost.url} target="_blank" rel="noopener noreferrer" className="mt-8 pt-4 border-t border-border/50 w-full flex items-center justify-center gap-8 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    <span className="flex items-center gap-1.5">
+                      <MessageCircle className="w-4 h-4" />
+                      {t.xPost.replies}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Share2 className="w-4 h-4" />
+                      {t.xPost.retweets}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <ThumbsUp className="w-4 h-4" />
+                      {t.xPost.likes}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <TrendingUp className="w-4 h-4" />
+                      {t.xPost.views}
+                    </span>
+                    <span className="ml-auto text-foreground hover:underline flex items-center gap-1.5 transition-colors">
+                      {t.xPost.cta}
+                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </AnimatedSection>
+          )}
+
+          {/* Reddit Posts */}
+          <div className="grid md:grid-cols-2 gap-4">
+          {t.redditPosts?.map((rp, i) => (
+            <AnimatedSection key={rp.url} delay={0.15 + i * 0.1}>
+              <div className="h-full">
+                <a
+                  href={rp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col p-5 rounded-2xl bg-card border border-border/50 border-t-2 border-t-[#FF4500] hover:border-border transition-colors group h-full"
+                >
+                  <div className="flex gap-3">
+                    <img src="/foto-avatar.webp" alt="" role="presentation" width={384} height={384} className="w-10 h-10 rounded-full shrink-0 mt-0.5" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start gap-2">
+                        <p className="text-sm text-foreground leading-relaxed">{rp.hook}<span className="text-muted-foreground">...</span> <span className="text-[#FF4500] group-hover:text-[#FF4500] transition-colors">ver más</span></p>
+                        <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 mt-0.5" fill="#FF4500">
+                          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-4 text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1.5">
+                      <ArrowUp className="w-3.5 h-3.5" />
+                      {rp.upvotes}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      {rp.comments}
+                    </span>
+                    <span className="text-muted-foreground/60">{rp.subreddit}</span>
+                    <span className="ml-auto text-[#FF4500] group-hover:underline flex items-center gap-1.5 transition-colors">
+                      {rp.cta}
+                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                    </span>
+                  </div>
+                </a>
+              </div>
+            </AnimatedSection>
+          ))}
+          </div>
+
+          <div className="h-6" />
+
+          {/* LinkedIn Posts */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {t.linkedinPosts.items.map((post: { hook: string; reactions: string; comments: string; url: string }, i: number) => (
+              <AnimatedSection key={`li-${i}`} delay={0.2 + i * 0.1}>
+                <a
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col p-5 rounded-2xl bg-card border border-border/50 border-t-2 border-t-[hsl(var(--linkedin))] hover:border-border transition-colors group h-full"
+                >
+                  <div className="flex gap-3 flex-1">
+                    <img src="/foto-avatar.webp" alt="" role="presentation" width={384} height={384} className="w-10 h-10 rounded-full shrink-0 mt-0.5" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start gap-2">
+                        <p className="text-sm text-foreground leading-relaxed">{post.hook}<span className="text-muted-foreground">...</span> <span className="text-[hsl(var(--linkedin))] group-hover:text-[hsl(var(--linkedin))] transition-colors">ver más</span></p>
+                        <LinkedInLogo className="w-4 h-4 text-[hsl(var(--linkedin))] shrink-0 mt-0.5" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-4 text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1.5">
+                      <ThumbsUp className="w-3.5 h-3.5" />
+                      {post.reactions}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      {post.comments}
+                    </span>
+                    <span className="ml-auto text-[hsl(var(--linkedin))] group-hover:text-[hsl(var(--linkedin))] group-hover:underline flex items-center gap-1.5 transition-colors">
+                      {t.linkedinPosts.cta}
+                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                    </span>
+                  </div>
+                </a>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          
+          {/* Separator */}
+          <div className="my-10 border-t border-border/40" />
+
+{/* Teaching / Speaking cards */}
           <div className="grid md:grid-cols-2 gap-6">
             {t.speaking.items.map((talk: { year: string; event: string; eventUrl: string; title: string; desc: string; pdf: string; featured: boolean; materialUrl?: string; materialLabel?: string }, i: number) => (
               <AnimatedSection key={i} delay={0.1 + i * 0.1}>
@@ -2448,10 +2643,11 @@ function App() {
                       </span>
                       <h3 className="font-display font-bold mt-2 text-gradient-theme">{talk.title}</h3>
                       <p className="text-sm text-muted-foreground mt-2 flex-1">{talk.desc}</p>
-                      <span className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground/60">
-                        <Lock className="w-3.5 h-3.5" />
-                        {t.speaking.comingSoon}
-                      </span>
+                      {t.speaking.comingSoon && (
+                        <span className="mt-4 inline-flex items-center gap-2 text-xs text-muted-foreground/60">
+                          {t.speaking.comingSoon}
+                        </span>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -2488,88 +2684,6 @@ function App() {
                     </div>
                   </div>
                 )}
-              </AnimatedSection>
-            ))}
-          </div>
-
-          {/* Separator */}
-          <div className="my-10 border-t border-border/40" />
-
-          {/* Reddit Posts */}
-          {t.redditPosts?.map((rp, i) => (
-            <AnimatedSection key={rp.url} delay={0.15 + i * 0.1}>
-              <div className="mb-4">
-                <a
-                  href={rp.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col p-5 rounded-2xl bg-card border border-border/50 border-t-2 border-t-[#FF4500] hover:border-border transition-colors group"
-                >
-                  <div className="flex gap-3">
-                    <img src="/foto-avatar.webp" alt="" role="presentation" width={384} height={384} className="w-10 h-10 rounded-full shrink-0 mt-0.5" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start gap-2">
-                        <p className="text-sm text-foreground leading-relaxed">{rp.hook}<span className="text-muted-foreground">...</span> <span className="text-[#FF4500] group-hover:text-[#FF4500] transition-colors">ver más</span></p>
-                        <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 mt-0.5" fill="#FF4500">
-                          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-4 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <ArrowUp className="w-3.5 h-3.5" />
-                      {rp.upvotes}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      {rp.comments}
-                    </span>
-                    <span className="text-muted-foreground/60">{rp.subreddit}</span>
-                    <span className="ml-auto text-[#FF4500] group-hover:underline flex items-center gap-1.5 transition-colors">
-                      {rp.cta}
-                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                    </span>
-                  </div>
-                </a>
-              </div>
-            </AnimatedSection>
-          ))}
-
-          {/* LinkedIn Posts */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {t.linkedinPosts.items.map((post: { hook: string; reactions: string; comments: string; url: string }, i: number) => (
-              <AnimatedSection key={`li-${i}`} delay={0.2 + i * 0.1}>
-                <a
-                  href={post.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col p-5 rounded-2xl bg-card border border-border/50 border-t-2 border-t-[hsl(var(--linkedin))] hover:border-border transition-colors group h-full"
-                >
-                  <div className="flex gap-3 flex-1">
-                    <img src="/foto-avatar.webp" alt="" role="presentation" width={384} height={384} className="w-10 h-10 rounded-full shrink-0 mt-0.5" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start gap-2">
-                        <p className="text-sm text-foreground leading-relaxed">{post.hook}<span className="text-muted-foreground">...</span> <span className="text-[hsl(var(--linkedin))] group-hover:text-[hsl(var(--linkedin))] transition-colors">ver más</span></p>
-                        <LinkedInLogo className="w-4 h-4 text-[hsl(var(--linkedin))] shrink-0 mt-0.5" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-4 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <ThumbsUp className="w-3.5 h-3.5" />
-                      {post.reactions}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      {post.comments}
-                    </span>
-                    <span className="ml-auto text-[hsl(var(--linkedin))] group-hover:text-[hsl(var(--linkedin))] group-hover:underline flex items-center gap-1.5 transition-colors">
-                      {t.linkedinPosts.cta}
-                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
-                    </span>
-                  </div>
-                </a>
               </AnimatedSection>
             ))}
           </div>

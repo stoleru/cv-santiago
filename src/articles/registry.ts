@@ -16,7 +16,7 @@ export interface ArticleSeoMeta {
   extra?: Record<string, string>
   citation?: Array<{ '@type': string; name: string; url: string }>
   isBasedOn?: Record<string, unknown>
-  mentions?: Array<Record<string, string>>
+  mentions?: Array<Record<string, string | string[]>>
   discussionUrl?: string
   relatedLink?: string
 }
@@ -513,7 +513,7 @@ export const articleRegistry: ArticleConfig[] = [
         { '@type': 'DiscussionForumPosting', name: 'I built an AI job search system with Claude Code — r/ClaudeAI (250+ upvotes)', url: 'https://www.reddit.com/r/ClaudeAI/comments/1sd2f37/i_built_an_ai_job_search_system_with_claude_code/' },
       ],
       mentions: [
-        { '@type': 'SoftwareSourceCode', name: 'career-ops', url: 'https://github.com/santifer/career-ops', codeRepository: 'https://github.com/santifer/career-ops', programmingLanguage: 'TypeScript, Go', sameAs: 'https://www.wikidata.org/wiki/Q139007988' },
+        { '@type': 'SoftwareSourceCode', name: 'career-ops', url: 'https://github.com/santifer/career-ops', codeRepository: 'https://github.com/santifer/career-ops', programmingLanguage: ['TypeScript', 'Go'], sameAs: 'https://www.wikidata.org/wiki/Q139007988' },
         { '@type': 'SoftwareApplication', name: 'Claude Code', url: 'https://claude.ai' },
         { '@type': 'SoftwareApplication', name: 'Playwright', url: 'https://playwright.dev' },
         { '@type': 'SoftwareApplication', name: 'Puppeteer', url: 'https://pptr.dev' },

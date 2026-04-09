@@ -1,5 +1,5 @@
 import { n8nContent, CLASSIFICATION_PROMPT, type N8nLang } from './n8n-i18n'
-import { buildArticleJsonLd } from './articles/json-ld'
+import { buildJsonLdFromRegistry } from './articles/json-ld'
 import { useArticleSeo } from './articles/use-article-seo'
 import {
   DownloadButton,
@@ -26,42 +26,8 @@ import {
 
 function buildJsonLd(lang: N8nLang) {
   const t = n8nContent[lang]
-  return buildArticleJsonLd({
-    lang,
-    url: `https://santifer.io/${t.slug}`,
-    altUrl: `https://santifer.io/${t.altSlug}`,
+  return buildJsonLdFromRegistry('n8n-for-pms', lang, t, {
     headline: t.header.h1 + ' — Cheat Sheet',
-    alternativeHeadline: t.seo.title,
-    description: t.seo.description,
-    datePublished: '2026-02-24',
-    dateModified: '2026-03-06',
-    keywords: ['n8n', 'product manager', 'automation', 'AI', 'workflow', 'sprint report', 'feedback classification', 'no-code', 'n8n tutorial', 'AI workflow automation'],
-    images: [
-      'https://santifer.io/workflows/n8n-sprint-report-automation-workflow.webp',
-      'https://santifer.io/workflows/n8n-ai-feedback-classification-workflow.webp',
-    ],
-    breadcrumbHome: t.nav.breadcrumbHome,
-    breadcrumbCurrent: t.nav.breadcrumbCurrent,
-    faq: t.faq.items,
-    articleType: 'TechArticle',
-    about: [
-      { '@type': 'SoftwareApplication', name: 'n8n', url: 'https://n8n.io', applicationCategory: 'Workflow Automation' },
-      { '@type': 'Thing', name: 'Product Management Automation' },
-    ],
-    extra: { proficiencyLevel: 'Beginner', dependencies: 'n8n Cloud (free tier), Airtable, Slack' },
-    isBasedOn: {
-      '@type': 'Course',
-      name: 'Masterclass: n8n for PMs',
-      description: '60-minute lightning lesson on workflow automation for product managers. 178 students enrolled.',
-      provider: { '@type': 'Organization', name: 'Maven', url: 'https://maven.com' },
-      instructor: { '@type': 'Person', name: 'Dr. Marily Nika' },
-      url: 'https://maven.com/p/52fc7d/masterclass-n8n-for-p-ms',
-    },
-    mentions: [
-      { '@type': 'SoftwareApplication', name: 'n8n', url: 'https://n8n.io' },
-      { '@type': 'SoftwareApplication', name: 'Airtable', url: 'https://airtable.com' },
-      { '@type': 'SoftwareApplication', name: 'Slack', url: 'https://slack.com' },
-    ],
   })
 }
 

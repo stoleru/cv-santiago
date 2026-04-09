@@ -91,8 +91,11 @@ function extractSeoBlock(source: string): string | null {
   return source.slice(begin, i + 1)
 }
 
-/** Extract the buildArticleJsonLd({ ... }) block */
+/** Extract the buildArticleJsonLd({ ... }) or buildJsonLdFromRegistry(...) block */
 function extractJsonLdBlock(source: string): string | null {
+  // New pattern: buildJsonLdFromRegistry pulls data from registry (no inline block to extract)
+  if (source.includes('buildJsonLdFromRegistry(')) return 'REGISTRY_DRIVEN'
+
   const start = source.indexOf('buildArticleJsonLd({')
   if (start === -1) return null
   let depth = 0
@@ -151,7 +154,7 @@ function validateArticle(config: typeof articleRegistry[0]): { issues: Issue[]; 
     return { issues, fixes }
   }
   if (!jsonLdBlock) {
-    issues.push({ severity: 'error', msg: `buildArticleJsonLd call not found in ${sourceRel}` })
+    issues.push({ severity: 'error', msg: `buildArticleJsonLd/buildJsonLdFromRegistry call not found in ${sourceRel}` })
     return { issues, fixes }
   }
 
@@ -161,11 +164,13 @@ function validateArticle(config: typeof articleRegistry[0]): { issues: Issue[]; 
   const seoImage = extractString(seoBlock, 'image')
   const seoXDefault = extractString(seoBlock, 'xDefaultSlug')
 
-  const jsonPublished = extractString(jsonLdBlock, 'datePublished')
-  const jsonModified = extractString(jsonLdBlock, 'dateModified')
-  const jsonKeywords = extractArray(jsonLdBlock, 'keywords')
-  const jsonArticleType = extractString(jsonLdBlock, 'articleType')
-  const aboutCount = countAboutEntries(jsonLdBlock)
+  // When using buildJsonLdFromRegistry, dates/keywords come from registry.seoMeta
+  const isRegistryDriven = jsonLdBlock === 'REGISTRY_DRIVEN'
+  const jsonPublished = isRegistryDriven ? config.seoMeta?.datePublished ?? null : extractString(jsonLdBlock, 'datePublished')
+  const jsonModified = isRegistryDriven ? config.seoMeta?.dateModified ?? null : extractString(jsonLdBlock, 'dateModified')
+  const jsonKeywords = isRegistryDriven ? config.seoMeta?.keywords ?? null : extractArray(jsonLdBlock, 'keywords')
+  const jsonArticleType = isRegistryDriven ? config.seoMeta?.articleType ?? null : extractString(jsonLdBlock, 'articleType')
+  const aboutCount = isRegistryDriven ? config.seoMeta?.about?.length ?? 0 : countAboutEntries(jsonLdBlock)
 
   // ===== REGISTRY-LEVEL ERRORS =====
 
